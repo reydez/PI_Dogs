@@ -12,7 +12,9 @@ router.get("/", async (req, res) => {
     );
     const db = await Dog.findAll({ include: [{ model: Temperament }] });
 
-    const formatearAPI = response.data.map(formatAPI);
+    const formatearAPI = response.data.map((raza) => {
+      return formatAPI(raza);
+    });
 
     const formatearDB = [];
 
@@ -55,15 +57,7 @@ router.get("/:id", async (req, res) => {
         `https://api.thedogapi.com/v1/breeds/${id}?api_key=${API_KEY}`
       );
 
-      return res.json({
-        id: response.data.id,
-        imagen: `https://cdn2.thedogapi.com/images/${response.data.reference_image_id}.jpg`,
-        nombre: response.data.name,
-        temperamento: response.data.temperament,
-        altura: response.data.height.metric,
-        peso: response.data.weight.metric,
-        vida: response.data.life_span,
-      });
+      return res.json(formatAPI(response.data));
     } else {
       const db = await Dog.findByPk(id, { include: [{ model: Temperament }] });
       if (db) return res.json(formatDB(db));

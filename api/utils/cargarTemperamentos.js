@@ -3,8 +3,6 @@ const axios = require("axios");
 const { Temperament } = require("../src/db.js");
 const { API_KEY } = process.env;
 
-console.log(API_KEY);
-
 const cargarTemperamentos = async () => {
   const response = await axios.get(
     `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
