@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
 
     const all = [...formatearAPI, ...formatearDB];
 
-    /* query */
+    /* if query */
     const paraMandar = [];
     const { name } = req.query;
 
@@ -39,7 +39,7 @@ router.get("/", async (req, res) => {
 
       return paraMandar.length
         ? res.json(paraMandar)
-        : res.status(404).json({ error: "No existe ese perro" });
+        : res.status(404).json({ error: "No existe esa raza de perro" });
     }
 
     res.json(all);
