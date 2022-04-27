@@ -23,15 +23,14 @@ const formatDB = (value) => {
   const paraMandar = {
     id: value.dataValues.id,
     nombre: value.dataValues.nombre,
-    temperamento: temps.join(", "),
-    peso: value.dataValues.peso,
     imagen: value.dataValues.imagen
       ? value.dataValues.imagen
       : "https://dummyimage.com/600x400/000/fff.jpg&text=Esta+raza+no+tiene+imagen",
+    temperamento: temps.join(", "),
+    peso: value.dataValues.peso,
+    altura: value.dataValues.altura,
+    vida: value.dataValues.vida,
   };
-
-  if (value.vida) paraMandar.vida = value.dataValues.vida;
-  if (value.altura) paraMandar.altura = value.dataValues.altura;
 
   return paraMandar;
 };
