@@ -1,6 +1,11 @@
 require("dotenv").config();
 const axios = require("axios");
-const { formatAPI, formatDB, formatAll } = require("../../utils/functions.js");
+const {
+  formatAPI,
+  formatDB,
+  formatAll,
+  validateUUID,
+} = require("../../utils/functions.js");
 const { Dog, Temperament } = require("../db.js");
 const router = require("express").Router();
 const { API_KEY } = process.env;
@@ -40,18 +45,20 @@ router.get("/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    if (!id.includes("-")) {
+    if (validateUUID(id)) {
+      const db = await Dog.findByPk(id, { include: [{ model: Temperament }] });
+      if (db) return res.json(formatDB(db));
+    } else if (!isNaN(id)) {
       const response = await axios.get(
         `https://api.thedogapi.com/v1/breeds/${id}?api_key=${API_KEY}`
       );
 
       return res.json(formatAPI(response.data));
     } else {
-      const db = await Dog.findByPk(id, { include: [{ model: Temperament }] });
-      if (db) return res.json(formatDB(db));
+      return res.status(404).json({ error: "El Id ingresado no es valido " });
     }
   } catch (error) {
-    console.log(error);
+    res.status(404).json({ error: "Algo salio mal =(" });
   }
 });
 

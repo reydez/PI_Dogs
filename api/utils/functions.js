@@ -61,4 +61,11 @@ const formatAll = (apiArray, dbArray) => {
   return all;
 };
 
-module.exports = { formatAPI, formatDB, formatTemp, formatAll };
+const validateUUID = (str) => {
+  const regExp =
+    /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+
+  return regExp.test(str);
+};
+
+module.exports = { formatAPI, formatDB, formatTemp, formatAll, validateUUID };
