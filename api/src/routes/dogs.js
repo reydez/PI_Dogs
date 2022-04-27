@@ -1,6 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
-const { formatAPI, formatDB } = require("../../utils/functions.js");
+const { formatAPI, formatDB, formatAll } = require("../../utils/functions.js");
 const { Dog, Temperament } = require("../db.js");
 const router = require("express").Router();
 const { API_KEY } = process.env;
@@ -12,19 +12,7 @@ router.get("/", async (req, res) => {
     );
     const db = await Dog.findAll({ include: [{ model: Temperament }] });
 
-    const formatearAPI = response.data.map((raza) => {
-      return formatAPI(raza);
-    });
-
-    const formatearDB = [];
-
-    if (db) {
-      for (const dog of db) {
-        formatearDB.push(formatDB(dog));
-      }
-    }
-
-    const all = [...formatearAPI, ...formatearDB];
+    const all = formatAll(response.data, db);
 
     /* if query */
     const paraMandar = [];
@@ -68,7 +56,15 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-  const { nombre, altura, peso, vida, temperamentos } = req.body;
+  const { nombre, altura, peso, vida, imagen, temperamentos } = req.body;
+
+  const response = await axios.get(
+    `https://api.thedogapi.com/v1/breeds/search?q=${nombre}`
+  );
+
+  const db = await Dog.findAll({ include: [{ model: Temperament }] });
+
+  const all = formatAll(response.data, db);
 
   if (!nombre || !altura || !peso)
     return res.status(404).send({ error: "Faltan datos por ingresar" });
@@ -79,12 +75,37 @@ router.post("/create", async (req, res) => {
       altura,
       peso,
       vida,
+      imagen,
     };
 
-    const nuevaRaza = await Dog.create(obj);
-    nuevaRaza.addTemperaments(temperamentos);
+    var flag = false;
 
-    return res.json({ msg: "Registro fue exitoso" });
+    if (all.length) {
+      all.forEach(async (raza) => {
+        if (raza.nombre.toLowerCase() === nombre.toLowerCase()) {
+          flag = true;
+        }
+      });
+    }
+
+    if (flag) {
+      return res.json({ msg: "Ya existe ese registro" });
+    }
+
+    const nuevaRaza = await Dog.create(obj);
+    await nuevaRaza.addTemperaments(temperamentos);
+
+    const justaAddedRaza = await Dog.findOne({
+      where: {
+        id: nuevaRaza.id,
+      },
+      include: [{ model: Temperament }],
+    });
+
+    return res.json({
+      msg: "Registro fue exitoso",
+      AddedRaza: formatDB(justaAddedRaza),
+    });
   } catch (error) {
     console.log(error);
   }

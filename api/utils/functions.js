@@ -25,10 +25,13 @@ const formatDB = (value) => {
     nombre: value.dataValues.nombre,
     temperamento: temps.join(", "),
     peso: value.dataValues.peso,
+    imagen: value.dataValues.imagen
+      ? value.dataValues.imagen
+      : "https://dummyimage.com/600x400/000/fff.jpg&text=Esta+raza+no+tiene+imagen",
   };
 
-  if (value.vida) paraMandar.vida = value.vida;
-  if (value.altura) paraMandar.altura = value.altura;
+  if (value.vida) paraMandar.vida = value.dataValues.vida;
+  if (value.altura) paraMandar.altura = value.dataValues.altura;
 
   return paraMandar;
 };
@@ -40,4 +43,22 @@ const formatTemp = (value) => {
   };
 };
 
-module.exports = { formatAPI, formatDB, formatTemp };
+const formatAll = (apiArray, dbArray) => {
+  const formatearAPI = apiArray.map((raza) => {
+    return formatAPI(raza);
+  });
+
+  const formatearDB = [];
+
+  if (dbArray) {
+    for (const dog of dbArray) {
+      formatearDB.push(formatDB(dog));
+    }
+  }
+
+  const all = [...formatearAPI, ...formatearDB];
+
+  return all;
+};
+
+module.exports = { formatAPI, formatDB, formatTemp, formatAll };

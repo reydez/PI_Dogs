@@ -25,6 +25,11 @@ module.exports = (sequelize) => {
       },
       vida: {
         type: DataTypes.STRING,
+        allowNull: true,
+      },
+      imagen: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
       creado: {
         type: DataTypes.BOOLEAN,
