@@ -23,9 +23,12 @@ export const getRazasByName = (nombre) => async (dispatch) => {
     const response = await axios.get(
       `http://localhost:3001/dogs?name=${nombre}`
     );
+
     dispatch({ type: "GET_RAZAS_BY_NAME", payload: response.data });
   } catch (error) {
-    console.log(error);
+    if (error.response) {
+      dispatch({ type: "GET_RAZAS_BY_NAME", payload: error.response.data });
+    }
   }
 };
 
@@ -64,9 +67,16 @@ export const filterByRazaExistente = (value) => {
   };
 };
 
-export const sort = (value) => {
+export const sortAZ = (value) => {
   return {
-    type: "SORT",
+    type: "SORT_AZ",
+    payload: value,
+  };
+};
+
+export const sortPeso = (value) => {
+  return {
+    type: "SORT_PESO",
     payload: value,
   };
 };

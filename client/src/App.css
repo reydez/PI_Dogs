@@ -1,5 +1,14 @@
-.App {
-  /* text-align: center; */
+.App .pititle{
+  width: 100%;
+  text-align: center;
+
+}
+
+.App .pititle h2{
+  margin: 0 auto;
+  padding: .2rem;
+  border-radius: 10px;
+  width: fit-content;
 }
 
 .App-logo {

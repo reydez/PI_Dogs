@@ -1,11 +1,18 @@
 const formatAPI = (value) => {
+  const temps = [];
+  if (value.temperament) {
+    value.temperament.split(", ").forEach((e) => {
+      temps.push(e.toLowerCase());
+    });
+  }
+
   return {
     id: value.id,
     nombre: value.name,
     imagen: value.image
       ? value.image.url
       : `https://cdn2.thedogapi.com/images/${value.reference_image_id}.jpg`,
-    temperamento: value.temperament,
+    temperamento: temps.join(", "),
     peso: value.weight.metric,
     altura: value.height.metric,
     vida: value.life_span,

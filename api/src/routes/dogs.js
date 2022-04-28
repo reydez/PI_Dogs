@@ -88,7 +88,7 @@ router.post("/create", async (req, res) => {
     var flag = false;
 
     if (all.length) {
-      all.forEach(async (raza) => {
+      all.forEach((raza) => {
         if (raza.nombre.toLowerCase() === nombre.toLowerCase()) {
           flag = true;
         }

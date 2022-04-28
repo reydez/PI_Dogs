@@ -8,7 +8,9 @@ import Create from "./views/Create";
 function App() {
   return (
     <div className="App">
-      <h1>Henry Dogs number</h1>
+      <div className="pititle">
+        <h2>Henry Dogs</h2>
+      </div>
       <Routes>
         <Route exact path="/" element={<Landing />} />
         <Route path="/dogs" element={<Home />} />
