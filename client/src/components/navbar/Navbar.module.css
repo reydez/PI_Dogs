@@ -1,10 +1,9 @@
 nav {
-    margin: 1rem auto;
     margin-top: 0;
     display: flex;
     justify-content: center;
-    width: 95%;
-    padding: 0.5rem;
+    width: 100%;
+    padding: 0.5rem 0;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transition: all 400ms;
@@ -27,6 +26,10 @@ nav {
     border-radius: 5px;
     padding: .3rem;
   }
+
+  nav ul li:hover {
+    background: rgba(0, 0, 0, 0.35);
+  }
   
   nav ul li button{
     background: blue;
@@ -44,6 +47,13 @@ nav {
     background: white;
     color: #666;
     border: 1px solid #666;
+  }
+
+  ul li a {
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+    transition: all 400ms;
   }
   
   @media (max-width: 555px) {

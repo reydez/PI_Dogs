@@ -13,7 +13,7 @@ const formatAPI = (value) => {
       ? value.image.url
       : `https://cdn2.thedogapi.com/images/${value.reference_image_id}.jpg`,
     temperamento: temps.join(", "),
-    peso: value.weight.metric,
+    peso: formatPeso(value.weight.metric),
     altura: value.height.metric,
     vida: value.life_span,
   };
@@ -37,6 +37,7 @@ const formatDB = (value) => {
     peso: value.dataValues.peso,
     altura: value.dataValues.altura,
     vida: value.dataValues.vida,
+    creado: value.dataValues.creado,
   };
 
   return paraMandar;
@@ -72,6 +73,20 @@ const validateUUID = (str) => {
     /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
 
   return regExp.test(str);
+};
+
+const formatPeso = (str) => {
+  var formated = "";
+  if (str.length === 1) {
+    formated = "0 - " + str;
+  } else if (str.length === 2) {
+    formated = "0 - " + str;
+  } else if (str === "NaN") {
+    formated = "0 - 0";
+  } else {
+    formated = str;
+  }
+  return formated;
 };
 
 module.exports = { formatAPI, formatDB, formatTemp, formatAll, validateUUID };

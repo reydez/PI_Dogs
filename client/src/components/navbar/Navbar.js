@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import BarraDeBusqueda from "./BarraDeBusqueda";
+import CreateRaza from "./CreateRaza";
 import Filtros from "./Filtros";
 import "./Navbar.module.css";
 import Ordenamientos from "./Ordenamientos";
@@ -23,6 +24,7 @@ export default function Navbar({ setPage }) {
           orderByAzRef={orderByAzRef}
           orderByPesoRef={orderByPesoRef}
         />
+        <CreateRaza />
       </ul>
     </nav>
   );

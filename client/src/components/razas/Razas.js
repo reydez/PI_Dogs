@@ -24,9 +24,9 @@ export default function Razas({ razas }) {
   } else {
     return (
       <div className={classes.razas}>
-        {razas &&
+        {razas.length > 0 ? (
           razas.map((raza, index) => (
-            <Link to={`/dogs/${raza.id}`}>
+            <Link key={index} to={`/dogs/${raza.id}`}>
               <Raza
                 key={index}
                 id={raza.id}
@@ -36,7 +36,12 @@ export default function Razas({ razas }) {
                 peso={raza.peso}
               />
             </Link>
-          ))}
+          ))
+        ) : (
+          <div>
+            <h3>No hay razas</h3>
+          </div>
+        )}
       </div>
     );
   }

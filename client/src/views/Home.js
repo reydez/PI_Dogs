@@ -7,6 +7,7 @@ import Paginacion from "../components/paginacion/Paginacion";
 export default function Home() {
   const [actualPage, setActualPage] = useState(1);
   const razas = useSelector((state) => state.razas);
+
   const razasPerPage = 8;
   const numerosDePagina = [];
 

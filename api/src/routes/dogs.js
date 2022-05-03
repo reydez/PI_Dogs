@@ -96,7 +96,7 @@ router.post("/create", async (req, res) => {
     }
 
     if (flag) {
-      return res.json({ msg: "Ya existe ese registro" });
+      return res.status(404).json({ error: "Ya existe ese registro" });
     }
 
     const nuevaRaza = await Dog.create(obj);

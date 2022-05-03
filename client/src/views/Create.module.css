@@ -1,0 +1,175 @@
+.btnRegresar {
+    border: 1px solid blue;
+    width: 90%;
+    margin: .3rem auto;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 10px;
+}
+
+.btnRegresar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.btnRegresar ul li a {
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+    transition: all 400ms;
+}
+
+.btnRegresar:hover {
+    background: rgba(0, 0, 0, 0.35);
+}
+
+form {
+    width: 90%;
+    max-width: 40rem;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 1rem auto;
+}
+
+.controlGroup {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    justify-content: center;
+    gap: 10px;
+}
+
+.formControl label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.selectContainer {
+    
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.selectContainer label {
+    font-weight: bold;
+}
+
+.selectContainer select {
+    margin-top: .5rem;
+    
+}
+
+.formControl input,
+.formControl label,
+.formControl select {
+    display: block;
+}
+
+.formControl input,
+.selectContainer select {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    max-width: 100%;
+    transition: all 400ms;
+}
+
+.temps {
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.tempsContainer {
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 12px;
+    width: 100%;
+    max-height: 150px;
+    overflow: auto;
+}
+
+.tempsContainer .temp ul {
+    padding: 0;
+}
+
+.tempsContainer .temp ul li {
+    margin: .5rem;
+    padding: .3rem;
+    list-style: none;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: 1px solid blue;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.tempsContainer .temp ul li {
+    display: inline-block;
+}
+
+
+
+
+
+.titulo {
+
+    text-align: center;
+}
+
+.titulo h1 {
+    margin-top: 0;
+    color: blue;
+}
+
+.formActions {
+    width: 100%;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+}
+
+.formActions button {
+    font: inherit;
+    background-color: blue;
+    color: white;
+    border: 1px solid blue;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.formActions .disabled {
+    font: inherit;
+    background-color: grey;
+    color: white;
+    border: 1px solid grey;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.formActions button:hover,
+.formActions button:focus {
+    background: white;
+    color: blue;
+    border: 1px solid blue;
+}
+
+.invalid input {
+    border: 1px solid #b40e0e;
+    background-color: #fddddd;
+}
+
+.errorText {
+    color: red;
+    margin: 0;
+}
+
+
