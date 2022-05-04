@@ -95,8 +95,7 @@ export default function Create() {
     pesoEsValido &&
     pesoMaxEsValido &&
     vidaEsValido &&
-    vidaMaxEsValido &&
-    imagenEsValido
+    vidaMaxEsValido
   ) {
     formEsValido = true;
   }
@@ -240,7 +239,7 @@ export default function Create() {
             />
             {imagenTieneError && (
               <p className={classes.errorText}>
-                favor de ingresar link de imagen
+                Su registro no va a tener Imagen
               </p>
             )}
           </div>
