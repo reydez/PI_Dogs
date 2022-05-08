@@ -22,7 +22,7 @@ export default function Landing() {
       </div>
       <img src={img} alt="Una imagen" />
       <div className={classes.nombre}>
-        <span>Hanry Dogs</span>
+        <span>Henry Dogs</span>
       </div>
       <div className={classes.iniciar}>
         <Link to="/dogs">

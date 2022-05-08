@@ -82,7 +82,9 @@ const formatPeso = (str) => {
   } else if (str.length === 2) {
     formated = "0 - " + str;
   } else if (str === "NaN") {
-    formated = "0 - 0";
+    formated = "27 - 36";
+  } else if (str.split(" - ")[0] === "NaN") {
+    formated = "0 - " + str.split(" - ")[1];
   } else {
     formated = str;
   }

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterByRazaExistente,
@@ -9,6 +9,7 @@ import {
 export default function Filtros({ setPage, clearOrders }) {
   const temps = useSelector((state) => state.temperamentos);
   const dispatch = useDispatch();
+  const tempVal = useRef("All");
 
   useEffect(() => {
     const loadTemps = () => {
@@ -27,13 +28,14 @@ export default function Filtros({ setPage, clearOrders }) {
     dispatch(filterByRazaExistente(e.target.value));
     setPage();
     clearOrders();
+    tempVal.current.value = "All";
   };
 
   return (
     <Fragment>
       <li>
         Por Temperamento:{" "}
-        <select onChange={(e) => handleFilterByTemps(e)}>
+        <select ref={tempVal} onChange={(e) => handleFilterByTemps(e)}>
           <option value="All">All</option>
           {temps.map((temp, index) => (
             <option value={temp.nombre} key={index}>

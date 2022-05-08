@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getRazasByName } from "../../redux/actions";
 
-export default function BarraDeBusqueda() {
+export default function BarraDeBusqueda({ setPage }) {
   const [nombre, setNombre] = useState("");
   const dispatch = useDispatch();
 
@@ -14,6 +14,7 @@ export default function BarraDeBusqueda() {
   const handleSearchByName = () => {
     dispatch(getRazasByName(nombre));
     setNombre("");
+    setPage();
   };
 
   return (

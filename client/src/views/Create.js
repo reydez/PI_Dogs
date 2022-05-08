@@ -78,7 +78,6 @@ export default function Create() {
 
   const {
     valor: valorImagen,
-    esValido: imagenEsValido,
     tieneError: imagenTieneError,
     valorChangeHandler: imagenChangeHandler,
     inputBlurHandler: imagenBlurHandler,
@@ -282,7 +281,7 @@ export default function Create() {
           </div>
 
           <div className={pesoClasses}>
-            <label htmlFor="pesomin">Peso</label>
+            <label htmlFor="pesomin">Peso Min</label>
             <input
               id="pesomin"
               type="number"
@@ -318,7 +317,7 @@ export default function Create() {
           </div>
 
           <div className={vidaClasses}>
-            <label htmlFor="vidamin">Vida</label>
+            <label htmlFor="vidamin">Vida Min</label>
             <input
               id="vidamin"
               type="number"

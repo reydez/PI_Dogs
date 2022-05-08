@@ -17,7 +17,7 @@ export default function Navbar({ setPage }) {
   return (
     <nav>
       <ul>
-        <BarraDeBusqueda />
+        <BarraDeBusqueda setPage={setPage} />
         <Filtros setPage={setPage} clearOrders={clearOrders} />
         <Ordenamientos
           setPage={setPage}
