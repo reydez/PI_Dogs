@@ -41,18 +41,6 @@ export const getDetails = (id) => async (dispatch) => {
   }
 };
 
-/* export const createRaza = (raza) => async (dispatch) => {
-  try {
-    const response = await axios.post(
-      "http://localhost:3001/dogs/create",
-      raza
-    );
-    dispatch({ type: "CREATE_RAZA", payload: response.data });
-  } catch (error) {
-    console.log(error);
-  }
-}; */
-
 export const filterByTemperamento = (temperamento) => {
   return {
     type: "FILTER_BY_TEMPERAMENTO",
