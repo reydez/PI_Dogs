@@ -2,6 +2,7 @@ require("dotenv").config();
 const axios = require("axios");
 const {
   formatAPI,
+  formatAPIPrueba,
   formatDB,
   formatAll,
   validateUUID,
@@ -15,9 +16,20 @@ router.get("/", async (req, res) => {
     const response = await axios.get(
       `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
     );
+
     const db = await Dog.findAll({ include: [{ model: Temperament }] });
 
-    const all = formatAll(response.data, db);
+    const formatearAPI = response.data.map((raza) => formatAPIPrueba(raza));
+
+    const formatearDB = [];
+
+    if (db) {
+      for (const dog of db) {
+        formatearDB.push(formatDB(dog));
+      }
+    }
+
+    const all = [...formatearAPI, ...formatearDB];
 
     /* if query */
     const paraMandar = [];

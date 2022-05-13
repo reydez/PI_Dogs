@@ -7,7 +7,8 @@ import axios from "axios";
 
 const isNotEmpty = (valor) => valor.trim() !== "";
 
-const validatePAV = (valor) => valor.trim() !== "" && valor > 0 && valor <= 100;
+const validatePAV = (valor) =>
+  valor.trim() !== "" || /^[1-9][0-9]?$|^100$/.test(valor);
 
 export default function Create() {
   const temperamentos = useSelector((state) => state.temperamentos);

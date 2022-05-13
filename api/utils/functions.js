@@ -19,6 +19,25 @@ const formatAPI = (value) => {
   };
 };
 
+const formatAPIPrueba = (value) => {
+  const temps = [];
+  if (value.temperament) {
+    value.temperament.split(", ").forEach((e) => {
+      temps.push(e.toLowerCase());
+    });
+  }
+
+  return {
+    id: value.id,
+    nombre: value.name,
+    imagen: value.image
+      ? value.image.url
+      : `https://cdn2.thedogapi.com/images/${value.reference_image_id}.jpg`,
+    temperamento: temps.join(", "),
+    peso: formatPeso(value.weight.metric),
+  };
+};
+
 const formatDB = (value) => {
   const temps = [];
   if (value.temperaments) {
@@ -91,4 +110,11 @@ const formatPeso = (str) => {
   return formated;
 };
 
-module.exports = { formatAPI, formatDB, formatTemp, formatAll, validateUUID };
+module.exports = {
+  formatAPI,
+  formatDB,
+  formatTemp,
+  formatAll,
+  validateUUID,
+  formatAPIPrueba,
+};
